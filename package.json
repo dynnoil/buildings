@@ -1,0 +1,37 @@
+{
+  "name": "buildings",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "webpack",
+    "start": "webpack-dev-server --hot --color",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dynnoil/buildings.git"
+  },
+  "author": "dynnoil@ya.ru",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dynnoil/buildings/issues"
+  },
+  "homepage": "https://github.com/dynnoil/buildings#readme",
+  "devDependencies": {
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-router-dom": "^4.3.1",
+    "rimraf": "^2.6.3",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.3.1"
+  }
+}
