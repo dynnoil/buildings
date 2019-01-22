@@ -19,10 +19,18 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.tsx?$/, use: 'ts-loader' }
+            { test: /\.tsx?$/, use: 'ts-loader' },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'postcss-loader'
+                ]
+            }
         ]
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js', '.css']
+        extensions: ['.tsx', '.ts', '.js', '.css', 'scss']
     }
 }

@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
-export default class Home extends React.PureComponent {
+import './Home.scss';
+
+export default class Home extends React.PureComponent<RouteComponentProps> {
     render() {
-        return <div>Sherlok Holmes</div>;
+        return <div className="container">{JSON.stringify(this.props)}</div>;
     }
 }
