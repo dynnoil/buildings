@@ -1,10 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif+TC&subset=cyrillic');
-
-$font-stask: 'Noto Serif TC', serif;
-
-body {
-    font-family: $font-stask;
-}
+@import './styles/style.scss';
 
 #app {
     box-sizing: border-box;
