@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
 
 import './App.scss';
 import Navbar from './components/Navbar';
@@ -14,8 +14,9 @@ ReactDOM.render(
         <Router>
             <React.Suspense fallback={<div>Loading..</div>}>
                 <Navbar>
-                    <Link to="/">Home</Link>
-                    <Link to="/buildings/1">Buildings</Link>
+                    <NavLink exact to="/">Home</NavLink>
+                    <NavLink to="/buildings/1">Buildings</NavLink>
+                    <NavLink to="/buildings/2">Buildings</NavLink>
                 </Navbar>
                 <Switch>
                     <Route exact path="/" render={props => <Home {...props} />} />
