@@ -15,6 +15,7 @@ module.exports = {
     devServer: {
         index: 'index.html',
         publicPath: '/assets/',
+        historyApiFallback: true,
         contentBase: path.resolve(__dirname, 'public')
     },
     module: {

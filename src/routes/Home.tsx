@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import './Home.scss';
 import { Building } from '../types/Building';
 import Card from '../components/Card';
+import Page from '../components/Page';
 
 const BUILDINGS: Building[] = [
     { name: 'Quia', description: 'Est aut libero ad consequatur quia accusamus harum enim et.', image: 'http://lorempixel.com/640/480' },
@@ -17,14 +18,14 @@ const BUILDINGS: Building[] = [
 export default class Home extends React.PureComponent<RouteComponentProps> {
     render() {
         return (
-            <div className="container">
+            <Page header="Home">
                 <div className="card-columns">
                     {BUILDINGS.map((building, index) => (
                         <Card key={index} title={building.name}
                             text={building.description} imageUrl={building.image} />
                     ))}
                 </div>
-            </div>
+            </Page>
         );
     }
 }
