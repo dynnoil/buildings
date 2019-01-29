@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
+import Page from '../components/Page';
+
 export default class Detail extends React.PureComponent<RouteComponentProps> {
     render() {
         return (
-            <div>{JSON.stringify(this.props)}</div>
+            <Page header="Details">
+                {this.props.match.params['id']}
+            </Page>
         );
     }
 }

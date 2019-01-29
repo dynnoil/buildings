@@ -14,7 +14,7 @@ export default class Card extends React.PureComponent<Readonly<Props>> {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.title}</h5>
                     <p className="card-text">{this.props.text}</p>
-                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                    {this.props.children}
                 </div>
             </div>
         );
