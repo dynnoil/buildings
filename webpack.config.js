@@ -16,7 +16,11 @@ module.exports = {
         index: 'index.html',
         publicPath: '/assets/',
         historyApiFallback: true,
-        contentBase: path.resolve(__dirname, 'public')
+        contentBase: path.resolve(__dirname, 'public'),
+        proxy: [{
+            context: ['/buildings'],
+            target: 'http://localhost:3000'
+        }]
     },
     module: {
         rules: [

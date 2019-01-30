@@ -1,0 +1,40 @@
+{
+    "buildings": [
+        {
+            "id": "1",
+            "name": "Quia",
+            "description": "Est aut libero ad consequatur quia accusamus harum enim et.",
+            "image": "http://lorempixel.com/640/480"
+        },
+        {
+            "id": "2",
+            "name": "Velit",
+            "description": "Voluptate non quo.",
+            "image": "http://lorempixel.com/640/480"
+        },
+        {
+            "id": "3",
+            "name": "Sed",
+            "description": "Voluptas quo accusamus aut ut qui itaque.",
+            "image": "http://lorempixel.com/640/480"
+        },
+        {
+            "id": "4",
+            "name": "Optio",
+            "description": "Minima impedit pariatur exercitationem autem quia voluptatibus dolores molestiae beatae.",
+            "image": "http://lorempixel.com/640/480"
+        },
+        {
+            "id": "5",
+            "name": "Consequatur",
+            "description": "Reiciendis voluptas rerum sed nemo.",
+            "image": "http://lorempixel.com/640/480"
+        },
+        {
+            "id": "6",
+            "name": "Nemo",
+            "description": "Voluptatibus et ut neque.",
+            "image": "http://lorempixel.com/640/480"
+        }
+    ]
+}
