@@ -9,7 +9,7 @@ import logger from 'redux-logger';
 import './App.scss';
 import Navbar from './components/Navbar';
 import ErrorBoundary from './components/ErrorBoundary';
-import root from './reducers/root';
+import root from './store/reducer';
 
 const store = createStore(
     root,

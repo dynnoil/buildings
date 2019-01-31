@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import './Home.scss';
 import Card from '../components/Card';
 import Page from '../components/Page';
-import { fetchBuildings } from '../actions/actions';
-import { BuildingsState, AppState } from '../reducers/root';
+import { fetchBuildings } from '../store/buildings/actions';
+import { AppState } from '../store/reducer';
 import { ThunkDispatch } from 'redux-thunk';
+import { BuildingsState } from '../store/buildings/reducer';
 
 interface StateProps {
     buildings: BuildingsState;
@@ -35,9 +36,9 @@ class Home extends React.PureComponent<RouteComponentProps & StateProps & Dispat
                         {this.props.buildings.error.message}
                     </div>
                 }
-                {this.props.buildings.response &&
+                {this.props.buildings.items &&
                     <div className="card-columns">
-                        {this.props.buildings.response.map(building => (
+                        {this.props.buildings.items.map(building => (
                             <Card key={building.id} title={building.name}
                                 text={building.description} imageUrl={building.image}>
                                 <Link className="btn btn-primary" to={`/buildings/${building.id}`} >Go somewhere</Link>
