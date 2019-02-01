@@ -4,13 +4,20 @@ import { createRequest, createError, receiveResponse } from '../fetchMeta/action
 import { Building } from '../../types/Building';
 import { Dispatch } from 'redux';
 import { FetchMetaAction } from '../fetchMeta/actions';
+import { Pagination } from './reducer';
 
 export const FETCH_BUILDINGS = 'FETCH_BUILDINGS';
 
 export interface BuildingsAction extends FetchMetaAction {
-    items: Building[];
-    receivedAt: Date;
+    items?: Building[];
+    receivedAt?: Date;
+    pagination?: Pagination;
 }
+
+export const requestBuildings = (pagination: Pagination): BuildingsAction => ({
+    pagination,
+    ...createRequest(FETCH_BUILDINGS)
+});
 
 export const receiveBuildings = (items: Building[], receivedAt: Date): BuildingsAction => ({
     items,
@@ -18,13 +25,13 @@ export const receiveBuildings = (items: Building[], receivedAt: Date): Buildings
     ...receiveResponse(FETCH_BUILDINGS)
 });
 
-export const fetchBuildings = () => (dispatch: Dispatch) => {
+export const fetchBuildings = (pagination: Pagination) => (dispatch: Dispatch) => {
 
     dispatch(
-        createRequest(FETCH_BUILDINGS)
+        requestBuildings(pagination)
     );
 
-    return axios.get<Building[]>('/buildings').then(
+    return axios.get<Building[]>(`/buildings?_page=${pagination.page}&_limit=${pagination.limit}`).then(
         response => {
             dispatch(receiveBuildings(response.data, new Date()))
         },
