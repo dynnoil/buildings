@@ -24,7 +24,7 @@ export default class Navbar extends React.Component<Readonly<Props>> {
                     <div className="navbar-nav">
                         {this.props.children.map((navlink, index) =>
                             <li key={index} className="nav-item">
-                                {{ ...navlink, props: { ...navlink.props, className: 'nav-link' } }}
+                                {React.cloneElement(navlink, { className: 'nav-link' })}
                             </li>
                         )}
                     </div>
