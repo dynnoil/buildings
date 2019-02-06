@@ -1,39 +1,34 @@
 import axios from 'axios';
 
 import { createRequest, createError, receiveResponse } from '../fetchMeta/actions';
-import { Building } from '../../types/Building';
+import { Building, BuildingResponse } from '../../types/Building';
 import { Dispatch } from 'redux';
 import { FetchMetaAction } from '../fetchMeta/actions';
-import { Pagination } from './reducer';
 
 export const FETCH_BUILDINGS = 'FETCH_BUILDINGS';
 
 export interface BuildingsAction extends FetchMetaAction {
     items?: Building[];
+    hasMore?: boolean;
     receivedAt?: Date;
-    pagination?: Pagination;
 }
 
-export const requestBuildings = (pagination: Pagination): BuildingsAction => ({
-    pagination,
-    ...createRequest(FETCH_BUILDINGS)
-});
-
-export const receiveBuildings = (items: Building[], receivedAt: Date): BuildingsAction => ({
+export const receiveBuildings = (items: Building[], hasMore: boolean, receivedAt: Date): BuildingsAction => ({
     items,
+    hasMore,
     receivedAt,
     ...receiveResponse(FETCH_BUILDINGS)
 });
 
-export const fetchBuildings = (pagination: Pagination) => (dispatch: Dispatch) => {
+export const fetchBuildings = (pageSize: number, lastItemId?: string) => (dispatch: Dispatch) => {
 
     dispatch(
-        requestBuildings(pagination)
+        createRequest(FETCH_BUILDINGS)
     );
 
-    return axios.get<Building[]>(`/buildings?_page=${pagination.page}&_limit=${pagination.limit}`).then(
+    return axios.get<BuildingResponse>(`/api/buildings?pageSize=${pageSize}&lastItemId=${lastItemId}`).then(
         response => {
-            dispatch(receiveBuildings(response.data, new Date()))
+            dispatch(receiveBuildings(response.data.items, response.data.hasMore, new Date()))
         },
         error => {
             dispatch(createError(FETCH_BUILDINGS, error));

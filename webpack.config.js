@@ -18,7 +18,7 @@ module.exports = {
         historyApiFallback: true,
         contentBase: path.resolve(__dirname, 'public'),
         proxy: [{
-            context: ['/buildings'],
+            context: ['/api'],
             target: 'http://localhost:3000'
         }]
     },
