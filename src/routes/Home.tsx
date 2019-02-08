@@ -18,7 +18,7 @@ interface DispatchProps {
     fetchBuildings: (pageSize: number, lastItemId?: string) => void;
 }
 
-class Home extends React.PureComponent<RouteComponentProps & StateProps & DispatchProps> {
+export class Home extends React.PureComponent<RouteComponentProps & StateProps & DispatchProps> {
     static readonly DEFAULT_PAGE_SIZE = 15;
 
     componentDidMount() {
