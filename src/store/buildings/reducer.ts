@@ -1,10 +1,11 @@
 import { FetchMetaState, fetchMeta } from "../fetchMeta/reducer";
-import { Building } from "../../types/Building";
+import { BuildingBase } from "../../types/Building";
 import { BuildingsAction, FETCH_BUILDINGS } from "./actions";
 import { FetchStatus } from "../fetchMeta/actions";
 
 export interface BuildingsState extends FetchMetaState {
-    items: Building[];
+    items: BuildingBase[];
+    hasMore: boolean;
     receivedAt: Date;
 }
 
@@ -12,6 +13,7 @@ const initialState: BuildingsState = {
     error: null,
     isFetching: false,
     items: [],
+    hasMore: false,
     receivedAt: null
 };
 
@@ -26,9 +28,10 @@ export const buildings = (state: BuildingsState = initialState, action: Building
             };
         case FetchStatus.SUCCESS:
             return {
-                items: action.items,
-                receivedAt: action.receivedAt,
-                ...fetchMeta(state, action)
+                ...fetchMeta(state, action),
+                items: state.items.concat(action.items),
+                hasMore: action.hasMore,
+                receivedAt: action.receivedAt
             };
         default:
             return state;

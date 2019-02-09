@@ -25,6 +25,7 @@
     "@types/react-redux": "^7.0.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/redux": "^3.6.0",
+    "@types/redux-logger": "^3.0.6",
     "autoprefixer": "^9.4.6",
     "css-loader": "^2.1.0",
     "cssnano": "^4.1.8",
@@ -41,8 +42,11 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^11.2.0",
+    "@ckeditor/ckeditor5-react": "^1.1.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.2.1",
+    "normalizr": "^3.3.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-redux": "^6.0.0",

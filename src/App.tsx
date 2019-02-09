@@ -18,6 +18,7 @@ const store = createStore(
 
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './routes/Home'));
 const Detail = React.lazy(() => import(/* webpackChunkName: "detail" */ './routes/Detail'));
+const Editor = React.lazy(() => import(/* webpackChunkName: "editor" */ './routes/Editor'));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -27,10 +28,11 @@ ReactDOM.render(
                     <Navbar>
                         <NavLink exact to="/">Home</NavLink>
                         <NavLink to="/buildings/1">Buildings</NavLink>
-                        <NavLink to="/buildings/2">Buildings</NavLink>
+                        <NavLink to="/editor">Editor</NavLink>
                     </Navbar>
                     <Switch>
                         <Route exact path="/" render={props => <Home {...props} />} />
+                        <Route exact path="/editor" render={props => <Editor {...props} />} />
                         <Route path="/buildings/:id" render={props => <Detail {...props} />} />
                     </Switch>
                 </React.Suspense>
