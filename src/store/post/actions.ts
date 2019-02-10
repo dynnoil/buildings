@@ -23,7 +23,7 @@ export const fetchBuildingPost = (id: string) => (dispatch: Dispatch) => {
         createRequest(FETCH_BUILDING_POST)
     );
 
-    return axios.get<BuildingPost>(`/api/buildings/${id}`).then(
+    return axios.get<BuildingPost>(`/api/buildings/detail/${id}`).then(
         response => {
             dispatch(receivePost(id, response.data))
         },

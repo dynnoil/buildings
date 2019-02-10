@@ -45,7 +45,7 @@ export class Home extends React.PureComponent<RouteComponentProps & StateProps &
                         {this.props.buildings.items.map(building => (
                             <Card key={building._id} title={building.name}
                                 text={building.description} imageUrl={building.image}>
-                                <Link className="btn btn-primary" to={`/buildings/${building._id}`} >Go somewhere</Link>
+                                <Link className="btn btn-primary" to={`/details/${building._id}`} >Go somewhere</Link>
                             </Card>
                         ))}
                     </div>
