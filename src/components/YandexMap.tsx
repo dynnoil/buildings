@@ -18,6 +18,25 @@ interface State {
 export default class YandexMap extends React.PureComponent<Props, State> {
     static readonly DEFAULT_MAP_ID = `map-${Math.random().toString(36).substr(2, 9)}`;
 
+    static readonly GEO_OBJECTS = {
+        name: "Известные памятники",
+        style: "islands#redIcon",
+        items: [
+            {
+                center: [50.426472, 30.563022],
+                name: "Монумент &quot;Родина-Мать&quot;"
+            },
+            {
+                center: [50.45351, 30.516489],
+                name: "Памятник &quot;Богдану Хмельницкому&quot;"
+            },
+            {
+                center: [50.454433, 30.529874],
+                name: "Арка Дружбы народов"
+            }
+        ]
+    };
+
     static defaultProps = {
         mapId: YandexMap.DEFAULT_MAP_ID,
         center: [55.76, 37.64],
@@ -42,12 +61,17 @@ export default class YandexMap extends React.PureComponent<Props, State> {
                 center: this.props.center,
                 zoom: this.props.zoom
             });
-            this.props.objects.forEach(object => {
-                this.map.geoObjects.add(new ymaps.Placemark(object.location, {
-                    iconContent: object.name
-                }));
+            this.map.controls.remove('searchControl');
+            this.map.controls.remove('trafficControl');
+
+            const collection = new ymaps.GeoObjectCollection(null, { preset: YandexMap.GEO_OBJECTS.style });
+            YandexMap.GEO_OBJECTS.items.forEach(item => {
+                collection.add(
+                    new ymaps.Placemark(item.center, { balloonContent: item.name })
+                )
             });
-            //this.map.setBounds(this.map.geoObjects.getBounds());
+            this.map.geoObjects.add(collection);
+            this.map.setBounds(this.map.geoObjects.getBounds());
             this.setState({ isInitialized: true });
         });
     }

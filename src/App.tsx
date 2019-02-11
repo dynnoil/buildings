@@ -35,7 +35,7 @@ ReactDOM.render(
                         <Route exact path="/" render={props => <Home {...props} />} />
                         <Route exact path="/map" render={props => <Map {...props} />} />
                         <Route exact path="/editor" render={props => <Editor {...props} />} />
-                        <Route path="/details/:id" render={props => <Detail {...props} />} />
+                        <Route exact path="/details/:id" render={props => <Detail {...props} />} />
                     </Switch>
                 </React.Suspense>
             </Router>
