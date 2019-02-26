@@ -48,7 +48,7 @@
     "@ckeditor/ckeditor5-build-classic": "^11.2.0",
     "@ckeditor/ckeditor5-react": "^1.1.0",
     "axios": "^0.18.0",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "normalizr": "^3.3.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
