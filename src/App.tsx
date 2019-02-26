@@ -18,6 +18,8 @@ const store = createStore(
 
 const Home = React.lazy(() => import(/* webpackChunkName: "home" */ './routes/Home'));
 const Detail = React.lazy(() => import(/* webpackChunkName: "detail" */ './routes/Detail'));
+const Editor = React.lazy(() => import(/* webpackChunkName: "editor" */ './routes/Editor'));
+const Map = React.lazy(() => import(/* webpackChunkName: "map" */ './routes/Map'));
 
 ReactDOM.render(
     <Provider store={store}>
@@ -26,12 +28,14 @@ ReactDOM.render(
                 <React.Suspense fallback={<div>Loading..</div>}>
                     <Navbar>
                         <NavLink exact to="/">Home</NavLink>
-                        <NavLink to="/buildings/1">Buildings</NavLink>
-                        <NavLink to="/buildings/2">Buildings</NavLink>
+                        <NavLink exact to="/map">Map</NavLink>
+                        <NavLink to="/editor">Editor</NavLink>
                     </Navbar>
                     <Switch>
                         <Route exact path="/" render={props => <Home {...props} />} />
-                        <Route path="/buildings/:id" render={props => <Detail {...props} />} />
+                        <Route exact path="/map" render={props => <Map {...props} />} />
+                        <Route exact path="/editor" render={props => <Editor {...props} />} />
+                        <Route exact path="/details/:id" render={props => <Detail {...props} />} />
                     </Switch>
                 </React.Suspense>
             </Router>

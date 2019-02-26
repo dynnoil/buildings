@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -8,17 +9,17 @@ module.exports = {
         filename: '[name].bundle.js',
         chunkFilename: '[name].[chunkhash].js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/assets/'
+        publicPath: '/'
     },
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
         index: 'index.html',
-        publicPath: '/assets/',
+        publicPath: '/',
         historyApiFallback: true,
-        contentBase: path.resolve(__dirname, 'public'),
+        // contentBase: path.resolve(__dirname, 'public'),
         proxy: [{
-            context: ['/buildings'],
+            context: ['/api'],
             target: 'http://localhost:3000'
         }]
     },
@@ -38,5 +39,15 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.css', 'scss']
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: false,
+            filename: 'index.html',
+            template: 'public/index.html',
+            templateParameters: {
+                'MAPS_API_KEY': process.env.MAPS_API_KEY
+            }
+        })
+    ]
 }

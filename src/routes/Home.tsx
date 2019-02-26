@@ -15,37 +15,51 @@ interface StateProps {
 }
 
 interface DispatchProps {
-    fetchBuildings: () => void;
+    fetchBuildings: (pageSize: number, lastItemId?: string) => void;
 }
 
-class Home extends React.PureComponent<RouteComponentProps & StateProps & DispatchProps> {
+export class Home extends React.PureComponent<RouteComponentProps & StateProps & DispatchProps> {
+    static readonly DEFAULT_PAGE_SIZE = 15;
 
     componentDidMount() {
-        this.props.fetchBuildings();
+        if (this.props.buildings.receivedAt === null) {
+            this.props.fetchBuildings(Home.DEFAULT_PAGE_SIZE);
+        }
+    }
+
+    private loadMore = () => {
+        const lastItemId = this.props.buildings.items.slice(-1)[0]._id;
+        this.props.fetchBuildings(Home.DEFAULT_PAGE_SIZE, lastItemId);
     }
 
     render() {
         return (
             <Page header="Home">
-                {this.props.buildings.isFetching &&
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only">Loading...</span>
-                    </div>}
-                {this.props.buildings.error &&
+                {this.props.buildings.error && (
                     <div className="alert alert-danger" role="alert">
                         {this.props.buildings.error.message}
                     </div>
-                }
-                {this.props.buildings.items &&
+                )}
+                {this.props.buildings.items && (
                     <div className="card-columns">
                         {this.props.buildings.items.map(building => (
-                            <Card key={building.id} title={building.name}
+                            <Card key={building._id} title={building.name}
                                 text={building.description} imageUrl={building.image}>
-                                <Link className="btn btn-primary" to={`/buildings/${building.id}`} >Go somewhere</Link>
+                                <Link className="btn btn-primary" to={`/details/${building._id}`} >Go somewhere</Link>
                             </Card>
                         ))}
                     </div>
-                }
+                )}
+                <div className="d-flex justify-content-center">
+                    {this.props.buildings.isFetching && (
+                        <div className="spinner-border" role="status">
+                            <span className="sr-only">Loading...</span>
+                        </div>
+                    )}
+                    {!this.props.buildings.isFetching && this.props.buildings.hasMore && (
+                        <button type="button" className="btn btn-primary" onClick={this.loadMore}>More</button>
+                    )}
+                </div>
             </Page>
         );
     }
@@ -56,7 +70,7 @@ const mapStateToProps = (state: AppState): StateProps => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): DispatchProps => ({
-    fetchBuildings: () => dispatch(fetchBuildings())
+    fetchBuildings: (pageSize, lastItemId) => dispatch(fetchBuildings(pageSize, lastItemId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
