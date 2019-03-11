@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/dynnoil/buildings#readme",
   "devDependencies": {
+    "@types/auth0-js": "^8.11.11",
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^7.0.1",
@@ -47,6 +48,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^11.2.0",
     "@ckeditor/ckeditor5-react": "^1.1.0",
+    "auth0-js": "^9.10.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "normalizr": "^3.3.0",
